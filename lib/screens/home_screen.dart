@@ -25,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('RecetasApp'),
-        backgroundColor: const Color.fromARGB(255, 80, 23, 3),
+        backgroundColor: const Color.fromARGB(255, 174, 64, 150),
       ),
       body: FutureBuilder<List<Receta>>(
         future: _futureRecetas,

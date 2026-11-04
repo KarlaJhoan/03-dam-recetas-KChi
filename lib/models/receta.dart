@@ -9,35 +9,40 @@ class Receta {
   final int calorias;
   final String imagenUrl;
   final double calificacion;
+  final String cocina;
+  final String dificultad;
 
- const Receta ({
-  required this.id,
-  required this.nombre,
-  required this.ingredientes,
-  required this.instrucciones,
-  required this.tiempoPreparacion,
-  required this.tiempoCoccion,
-  required this.porciones,
-  required this.calorias,
-  required this.imagenUrl,
-  required this.calificacion
- });
+  const Receta({
+    required this.id,
+    required this.nombre,
+    required this.ingredientes,
+    required this.instrucciones,
+    required this.tiempoPreparacion,
+    required this.tiempoCoccion,
+    required this.porciones,
+    required this.calorias,
+    required this.imagenUrl,
+    required this.calificacion,
+    this.cocina = 'Mayab',
+    this.dificultad = 'Media',
+  });
 
- factory Receta.fromJson(Map<String, dynamic> json) {
+  factory Receta.fromJson(Map<String, dynamic> json) {
     return Receta(
-      id: json['id'],
-      nombre: json['nombre'],
-      ingredientes: List<String>.from(json['ingredients']),
-      instrucciones: List<String>.from(json['instructions']),
-      tiempoPreparacion: json['prepTimeMinutes'],
-      tiempoCoccion: json['cookMinutes'],
-      porciones: json['servings'],
-      calorias: json['caloriesPerServing'],
-      imagenUrl: json['image'],
-      calificacion: (json['rating'] as num).toDouble(),
+      id: json['id'] ?? 0,
+      nombre: json['name'] ?? '',
+      ingredientes: List<String>.from(json['ingredients'] ?? []),
+      instrucciones: List<String>.from(json['instructions'] ?? []),
+      tiempoPreparacion: json['prepTimeMinutes'] ?? 0,
+      tiempoCoccion: json['cookMinutes'] ?? 0,
+      porciones: json['servings'] ?? 0,
+      calorias: json['caloriesPerServing'] ?? 0,
+      imagenUrl: json['image'] ?? '',
+      calificacion: (json['rating'] as num?)?.toDouble() ?? 0.0,
+      cocina: json['cuisine'] ?? 'Mayab',
+      dificultad: json['difficulty'] ?? 'Media',
     );
   }
 
   int get tiempoTotal => tiempoPreparacion + tiempoCoccion;
-  
 }
